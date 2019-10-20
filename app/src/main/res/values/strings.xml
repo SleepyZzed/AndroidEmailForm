@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">EventForm</string>
+    <string name="Name">Name</string>
+    <string name="Surname">Surname</string>
+    <string name="Email">Email</string>
+    <string name="Guests">Number Of Guests</string>
+    <string name="Parking">Parking</string>
+    <string name="Event_Type">EventType</string>
+    <string name="Submit">Submit</string>
+    <string-array name="events">
+
+
+    <item name="PoolParty">Pool Party</item>
+    <item name="PoliticParty">Political Gathering</item>
+    <item name="Gathering">Gathering</item>
+    </string-array>
+
+</resources>
