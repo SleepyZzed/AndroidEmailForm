@@ -2,12 +2,16 @@ package com.zed.amaar.eventform;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String surname;
     String email;
     String guestnumber;
+    View view;
+    private String myText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,22 +63,65 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         surname = txtSurname.getText().toString();
         email = txtEmail.getText().toString();
         guestnumber = txtGuest.getText().toString();
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.iconandroid);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        view = this.getWindow().getDecorView();
+
 
     }
+
+    public void opDg(){
+        AlertDialog.Builder mydg = new AlertDialog.Builder(MainActivity.this);
+        mydg.setTitle("Enter Your name");
+
+        final EditText nameinput = new EditText(MainActivity.this);
+        nameinput.setInputType(InputType.TYPE_CLASS_TEXT);
+        mydg.setView(nameinput);
+
+        mydg.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                myText = nameinput.getText().toString();
+                Toast.makeText(MainActivity.this, "Logged in as " + myText, Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+        mydg.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        mydg.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto", "events@gov.co.uk", null
-                ));
-
-                startActivity(Intent.createChooser(intent, "Choose an Email Client:"));
+        switch (item.getItemId()){
+            case R.id.Users:
+                opDg();
+                return true;
+            case R.id.blue:
+                view.setBackgroundColor(Color.parseColor("#737EF3"));
+                return true;
+            case R.id.white:
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                return  true;
+            case R.id.purple:
+                view.setBackgroundColor(Color.parseColor("#D7C5F3"));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 
     private TextWatcher formwatcher = new TextWatcher() {

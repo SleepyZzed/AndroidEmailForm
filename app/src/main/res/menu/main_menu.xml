@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ap="http://schemas.android.com/apk/res-auto">
+<item android:id="@+id/icon"
+    android:icon="@drawable/iconandroid"
+    android:title="icon"
+    ap:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/Users"
+        android:title="User"
+        ap:showAsAction="never"/>
+    <item android:id="@+id/Colours"
+        android:title="Colors"
+        ap:showAsAction="never">
+    <menu>
+        <item android:id="@+id/purple"
+            android:title="purple"
+            ap:showAsAction="never"/>
+        <item android:id="@+id/blue"
+            android:title="blue"
+            ap:showAsAction="never"/>
+        <item android:id="@+id/white"
+            android:title="white"
+            ap:showAsAction="never"/>
+    </menu>
+    </item>
+</menu>
